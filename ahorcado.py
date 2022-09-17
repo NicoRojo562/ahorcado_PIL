@@ -36,7 +36,7 @@ def random_word(array):
      
     for char in word:
         
-        encripted_random_word = print(char.replace(char,"*"), end='')
+        encripted_random_word = print(char.replace(char," _ "), end='')
      
     return encripted_random_word
 
