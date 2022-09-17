@@ -25,13 +25,19 @@ def elegir_nivel():
 
 elegir_nivel()
 
+words_array=["Python","Class","Technology","Language","Coding"]
 
+def random_word(array):
+    
+    """selects a random word from a List and changes 
+                all char in the word with a '*' """
+    
+    word = random.choice(array) 
+     
+    for char in word:
+        
+        encripted_random_word = print(char.replace(char,"*"), end='')
+     
+    return encripted_random_word
 
-
-#words_array=["Python","Class","Technology","Language","Coding"]
-#
-#def random_word():
-#    word = random.choice(words_array) 
-#    return word 
-
-#random_word()
+random_word(words_array)
