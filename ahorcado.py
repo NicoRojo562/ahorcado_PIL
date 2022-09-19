@@ -28,8 +28,8 @@ def elegir_nivel1():
     print("-" * 80)
     print("Elección de Dificultad")
     print("-" * 80)
-    print(f"1. Facil" + " |2. Medio" + " |3. Dificil")
-    opcion = validar_entre(1, 3, "Ingrese el numero de dificultad: ")
+    print(f"1. Fácil" + " |2. Medio" + " |3. Difícil")
+    opcion = validar_entre(1, 3, "Ingrese el número de dificultad: ")
     return opcion
     
 
@@ -37,11 +37,11 @@ def elegir_nivel1():
 # Elegimos la tematica a utilizar en el juego
 def elegir_tematica():
     print("-" * 80)
-    print("Elección de Tematica")
+    print("Elección de Temática")
     print("-" * 80)
     print("Elija entre las siguientes temáticas: ")
-    print("1. Frutas\n" + "2. Personas Celebres\n" + "3. Mundo\n" + "4. Provincias\n")
-    eleccion = validar_entre(1, 4, "Opcion elegida: ")
+    print("1. Frutas\n" + "2. Personas Célebres\n" + "3. Mundo\n" + "4. Provincias\n")
+    eleccion = validar_entre(1, 4, "Opción elegida: ")
     print("\n--> Se registró su elección...")
     return eleccion
 
@@ -89,7 +89,7 @@ def principal():
     print("-" * 80)
 
     # Pedimos al usuario que ingrese su nombre...
-    nickname = input("Ingrese su Nickname: ")
+    nickname = input("\nIngrese su Nickname: ")
 
     # Saludamos al usuario con un mensaje simple...
     print("\n¡Hola " + nickname + "!\n")
@@ -104,10 +104,10 @@ def principal():
         print("-" * 80)
         print("MENÚ DE OPCIONES")
         print("-" * 80)
-        print("1. Elegir tematica")
+        print("1. Elegir temática")
         print("2. Jugar")
         print("0. Salir")
-        opcion = int(input("Ingrese la opcion elegida: "))
+        opcion = int(input("Ingrese la opción elegida: "))
 
         # En esta opcion se activa la bandera "tematica" para notificar que se eligió una tematica para el ahorcado
         if opcion == 1:
@@ -115,6 +115,10 @@ def principal():
 
             # En esta opcion pensaba hacer elegir la tematica para usar luego en la opcion 2...
             tematica_elegida = elegir_tematica()
+        
+        elif opcion == 0:
+            print("Saliste del juego. Esperamos verte pronto!")
+            break
 
         elif tematica == False:
             print("-" * 80)
@@ -125,15 +129,15 @@ def principal():
         elif opcion == 2 and tematica:
             car=cargar_clases()
             nivel_elegido = elegir_nivel1()
-            vidas=cantvidas(nivel_elegido)
+            vidas = cantvidas(nivel_elegido)
             
-            palabra=getpalabra(tematica_elegida,car)
-            #print(palabra)
+            palabra = getpalabra(tematica_elegida,car)
+            palabra = palabra.lower()
             yword = str(len(palabra))
             print("\nSu palabra tiene " + yword + " letras \n")
-            palabrauser=[]
-            while vidas>0:
-                fallas=0
+            palabrauser = ""
+            while vidas > 0:
+                fallas = 0
                 for letra in palabra:
                     if letra in palabrauser:
                         print(letra,end='')
@@ -141,20 +145,19 @@ def principal():
                          print("*",end='')
                          fallas+=1
                 
-                tuletra=input("\nIntroduce tu letra: ")
+                tuletra = input("\nIntroduce tu letra: ")
                 palabrauser+=tuletra
                 
-                if palabra==palabrauser:
+                if palabrauser == palabra:
                     print("Felicitaciones " + str(nickname) + " Ganaste!!")
-
+                    break
 
                 if tuletra not in palabra:
                     vidas-=1
                     print("Has fallado \n")
                     print("Tu tienes ",+vidas,"vidas \n")
-                
-                
-                if vidas==0:
+                                
+                if vidas == 0:
                     print("Perdiste todas tus vidas!\n")
                     print("Gracias por jugar, a continuacion volverás al menú de opciones... \n")
             
