@@ -32,18 +32,6 @@ def elegir_nivel1():
     return opcion
     
 
-def elegir_nivel():
-    nivel = int(input("Elije tu nivel para jugar: "))
-    if nivel == 1:
-        pass
-    elif nivel == 2:
-        pass
-    elif nivel == 3:
-        pass
-    else:
-        print("Opción incorrecta")
-    return nivel
-
 
 # Elegimos la tematica a utilizar en el juego
 def elegir_tematica():
@@ -58,8 +46,35 @@ def elegir_tematica():
 def encripted_word(word):
     for char in word:
         encripted_random_word = print(char.replace(char, " * "), end='')
-
     return encripted_random_word
+
+
+
+def getpalabra(tematica,car):
+    palabra=None
+    if tematica==1:
+        palabra=random.choice(car.frutas)
+    elif tematica==2:
+        palabra=random.choice(car.personas_celebres)
+    elif tematica==3:
+        palabra=random.choice(car.mundo)
+    else:
+        palabra=random.choice(car.provincias)
+    return palabra
+            
+def cantvidas(nivel):
+    if nivel == 1:
+                vida=6
+               
+    elif nivel == 2:
+                vida=5
+               
+    elif nivel == 3:
+                vida=4
+    return vida
+    
+
+
 
 
 # Main Principal
@@ -77,7 +92,7 @@ def principal():
     # Creamos esta variable para validar luego, si el usuario ingreso en la opcion 1 para poder continuar el juego
     tematica = False
     tematica_elegida = None
-
+    
     # Desarrollamos menu de opciones...
     opcion = -1
     while opcion != 0:
@@ -101,30 +116,51 @@ def principal():
         # En opcion 2, validamos que la opcion sea igual a 2 y que la bandera tematica este prendida (valiendo True)
         # esto nos indicará que el usuario ya elgió una tematica para jugar...
         elif opcion == 2 and tematica:
+            car=cargar_clases()
             nivel_elegido = elegir_nivel1()
-            if nivel_elegido == 1:
-                # jugamos nivel facil
-                pass
-            elif nivel_elegido == 2:
-                # jugamos nivel medio
-                pass
-            elif nivel_elegido == 3:
-                # jugamos nivel dificil
-                pass
+            vidas=cantvidas(nivel_elegido)
+            
+            palabra=getpalabra(tematica_elegida,car)
+            #print(palabra)
+            yword = str(len(palabra))
+            print("su palabra tiene " + yword + " letras \n")
+            palabrauser=[]
+            while vidas>0:
+                fallas=0
+                for letra in palabra:
+                    if letra in palabrauser:
+                        print(letra,end='')
+                    else:
+                         print("*",end='')
+                         fallas+=1
+                
+                tuletra=input("\nIntroduce tu letra: ")
+                palabrauser+=tuletra
+                
+                if palabra==palabrauser:
+                    print("Felicidades ganaste")
+
+
+                if tuletra not in palabra:
+                    vidas-=1
+                    print("Has fallado \n")
+                    print("Tu tienes ",+vidas,"vidas \n")
+                
+                
+                if vidas==0:
+                    print("perdi")
+                    print("Gracias por jugar, a continuacion te aparcera el menu \n")
+            
         elif opcion == 0:
             print("Gracias por jugar con nosotros " + nickname + " nos vemos la próxima!")
         else:
             print("Opción incorrecta! Vuelva a intentar " + nickname + " por favor!")
 
-    words_array = ["Python", "Class", "Technology", "Language", "Coding"]
+  
 
-    word = random.choice(words_array)
 
-    yword = str(len(word))
 
-    print("su palabra tiene " + yword + " letras")
 
-    encripted_word(word)
 
 
 # Ejecutamos el programa
