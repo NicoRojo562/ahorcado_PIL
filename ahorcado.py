@@ -142,20 +142,20 @@ def principal():
                     if letra in palabrauser:
                         print(letra,end='')
                     else:
-                         print("*",end='')
+                         print(" * ",end='')
                          fallas+=1
                 
-                tuletra = input("\nIntroduce tu letra: ")
+                if fallas == 0:
+                    print("\nFelicitaciones " + str(nickname) + " Ganaste!!")
+                    break
+                
+                tuletra = input("\n Introduce tu letra:")
                 palabrauser+=tuletra
                 
-                if palabrauser == palabra:
-                    print("Felicitaciones " + str(nickname) + " Ganaste!!")
-                    break
-
                 if tuletra not in palabra:
                     vidas-=1
-                    print("Has fallado \n")
-                    print("Tu tienes ",+vidas,"vidas \n")
+                    print("\n Has fallado")
+                    print("Te quedan", vidas,"vidas \n")
                                 
                 if vidas == 0:
                     print("Perdiste todas tus vidas!\n")
