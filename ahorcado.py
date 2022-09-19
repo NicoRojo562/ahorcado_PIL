@@ -27,6 +27,7 @@ def validar_entre(inf, sup, mensaje):
 def elegir_nivel1():
     print("-" * 80)
     print("Elección de Dificultad")
+    print("-" * 80)
     print(f"1. Facil" + " |2. Medio" + " |3. Dificil")
     opcion = validar_entre(1, 3, "Ingrese el numero de dificultad: ")
     return opcion
@@ -35,10 +36,13 @@ def elegir_nivel1():
 
 # Elegimos la tematica a utilizar en el juego
 def elegir_tematica():
+    print("-" * 80)
     print("Elección de Tematica")
+    print("-" * 80)
     print("Elija entre las siguientes temáticas: ")
     print("1. Frutas\n" + "2. Personas Celebres\n" + "3. Mundo\n" + "4. Provincias\n")
     eleccion = validar_entre(1, 4, "Opcion elegida: ")
+    print("\n--> Se registró su elección...")
     return eleccion
 
 
@@ -64,13 +68,14 @@ def getpalabra(tematica,car):
             
 def cantvidas(nivel):
     if nivel == 1:
-                vida=6
+        vida=6
                
     elif nivel == 2:
-                vida=5
+        vida=5
                
     elif nivel == 3:
-                vida=4
+        vida=4
+
     return vida
     
 
@@ -96,7 +101,9 @@ def principal():
     # Desarrollamos menu de opciones...
     opcion = -1
     while opcion != 0:
+        print("-" * 80)
         print("MENÚ DE OPCIONES")
+        print("-" * 80)
         print("1. Elegir tematica")
         print("2. Jugar")
         print("0. Salir")
@@ -123,7 +130,7 @@ def principal():
             palabra=getpalabra(tematica_elegida,car)
             #print(palabra)
             yword = str(len(palabra))
-            print("su palabra tiene " + yword + " letras \n")
+            print("\nSu palabra tiene " + yword + " letras \n")
             palabrauser=[]
             while vidas>0:
                 fallas=0
@@ -138,7 +145,7 @@ def principal():
                 palabrauser+=tuletra
                 
                 if palabra==palabrauser:
-                    print("Felicidades ganaste")
+                    print("Felicitaciones " + str(nickname) + " Ganaste!!")
 
 
                 if tuletra not in palabra:
@@ -148,20 +155,17 @@ def principal():
                 
                 
                 if vidas==0:
-                    print("perdi")
-                    print("Gracias por jugar, a continuacion te aparcera el menu \n")
+                    print("Perdiste todas tus vidas!\n")
+                    print("Gracias por jugar, a continuacion volverás al menú de opciones... \n")
             
         elif opcion == 0:
+            print("-" * 80)
             print("Gracias por jugar con nosotros " + nickname + " nos vemos la próxima!")
         else:
+            print("-" * 80)
             print("Opción incorrecta! Vuelva a intentar " + nickname + " por favor!")
 
   
-
-
-
-
-
 
 # Ejecutamos el programa
 if __name__ == '__main__':
